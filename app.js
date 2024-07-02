@@ -1,9 +1,11 @@
-require('dotenv').config()
-
 const express = require('express')
 const cors = require('cors')
 
 const { conn } = require('./db/db')
+const { authMiddleware } = require('./auth/authMiddleware')
+
+const { apiLimiter } = require('./auth/api-limiter')
+const { basicAuth } = require('./auth/basic-auth')
 
 const app = express()
 
@@ -21,6 +23,13 @@ const run = async () => {
     const db = await conn()
 
     try {
+
+        // Biar ada batas waktunya pas request lah :
+        app.use(apiLimiter)
+        app.use(basicAuth)
+
+        // Biar api-key bener dulu -> pasangnya di header ya bukan parameter :
+        app.use(authMiddleware)
 
         // Get all Data
         app.get('/items', async (req, res) => {
@@ -95,5 +104,3 @@ const run = async () => {
 
 
 run()
-
-
