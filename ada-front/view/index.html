@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REST Client</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Robo Management</h1>
+    
+    <div>
+        <h2>Create New Robo</h2>
+        <form id="create-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="role">Role:</label>
+            <input type="text" id="role" name="role" required>
+            <button type="submit">Create</button>
+        </form>
+    </div>
+
+    <div>
+        <h2>Update Robo</h2>
+        <form id="update-form">
+            <label for="update-name">Name:</label>
+            <input type="text" id="update-name" name="name" required>
+            <label for="update-role">Role:</label>
+            <input type="text" id="update-role" name="role" required>
+            <button type="submit">Update</button>
+        </form>
+    </div>
+
+    <div>
+        <h2>Delete Robo</h2>
+        <form id="delete-form">
+            <label for="delete-name">Name:</label>
+            <input type="text" id="delete-name" name="name" required>
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+
+    <h2>Robot List</h2>
+    <div class="box">
+        
+    </div>
+
+    <script src="../client.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
