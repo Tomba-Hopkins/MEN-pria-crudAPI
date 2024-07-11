@@ -10,7 +10,6 @@ const run = async() => {
         port: 5000
     })
 
-
     server.route(routes)
 
     await server.start()

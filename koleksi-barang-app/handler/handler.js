@@ -34,7 +34,10 @@ const addBarang = (req, h) => {
     if(ada) {
         const response = h.response({
             status: 'success',
-            message: 'Prodak dah nambah noh'
+            message: 'Prodak dah nambah noh',
+            data: {
+                productId: id
+            }
         })
 
         response.code(201)
@@ -60,4 +63,32 @@ const getAllBarang = () => ({
 })
 
 
-module.exports = { addBarang, getAllBarang }
+const getBarangByID = (req, h) => {
+
+    const { productId } = req.params
+
+    const barang = kardus.filter((k) => k.id == Number(productId))[0]
+
+    if (barang !== undefined) {
+
+        return {
+            status: 'success',
+            data: {
+                barang
+            }
+        }
+        
+    }
+
+    const response = h.response({
+        status: 'fail',
+        message: 'GA NEMU KOCAG'
+    })
+
+    response.code(404)
+    return response
+    
+}
+
+
+module.exports = { addBarang, getAllBarang, getBarangByID }
