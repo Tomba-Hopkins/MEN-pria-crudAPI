@@ -1,7 +1,6 @@
 const kardus = require('../resource/kardus')
 
 const addBarang = (req, h) => {
-    console.log('Masuk', req.payload)
 
     if (req.payload == null){
         return h.response({
@@ -53,4 +52,12 @@ const addBarang = (req, h) => {
 }
 
 
-module.exports = { addBarang }
+const getAllBarang = () => ({
+    status: 'success',
+    data: {
+        kardus
+    }
+})
+
+
+module.exports = { addBarang, getAllBarang }
