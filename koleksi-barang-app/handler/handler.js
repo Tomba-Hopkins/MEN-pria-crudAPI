@@ -91,4 +91,48 @@ const getBarangByID = (req, h) => {
 }
 
 
-module.exports = { addBarang, getAllBarang, getBarangByID }
+const editBarang = (req, h) => {
+
+    if (req.payload == null){
+        return h.response({
+            status: 'fail',
+            message: 'ISI LAH'
+        }).code(400)
+    }
+
+    const { owner, name, price, description, stock } = req.payload
+    const { productId } = req.params
+
+    const index = kardus.findIndex((k) => k.id === Number(productId))
+
+    if (index !== -1) {
+        kardus[index] = {
+            ...kardus[index],
+            owner,
+            name,
+            price,
+            description,
+            stock
+        }
+
+        const response = h.response({
+            status: 'success',
+            message: 'Dah keubah noh'
+        })
+
+        response.code(200)
+        return response
+    }
+
+    const response = h.response({
+        status: 'fail',
+        message: 'Ga nemu idnya'
+    })
+
+    response.code(404)
+    return response
+    
+}
+
+
+module.exports = { addBarang, getAllBarang, getBarangByID, editBarang }
