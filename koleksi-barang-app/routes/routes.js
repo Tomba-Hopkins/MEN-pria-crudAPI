@@ -1,4 +1,4 @@
-const { addBarang, getAllBarang, getBarangByID, editBarang } = require('../handler/handler')
+const { addBarang, getAllBarang, getBarangByID, updateBarang, deleteBarang } = require('../handler/handler')
 
 const routes = [
     {
@@ -19,7 +19,12 @@ const routes = [
     {
         method: 'PUT',
         path: '/product/{productId}',
-        handler: editBarang
+        handler: updateBarang
+    },
+    {
+        method: 'DELETE',
+        path: '/product/{productId}',
+        handler: deleteBarang
     }
 ]
 

@@ -91,7 +91,7 @@ const getBarangByID = (req, h) => {
 }
 
 
-const editBarang = (req, h) => {
+const updateBarang = (req, h) => {
 
     if (req.payload == null){
         return h.response({
@@ -135,4 +135,26 @@ const editBarang = (req, h) => {
 }
 
 
-module.exports = { addBarang, getAllBarang, getBarangByID, editBarang }
+const deleteBarang = (req, h) => {
+
+    const { productId } = req.params
+    
+    const index = kardus.findIndex((k) => k.id === Number(productId))
+
+    if(index !== -1) {
+        kardus.splice(index, 1)
+
+        return h.response({
+            status: 'success',
+            message: `Data dengan id ${productId} berhasil di hapus`
+        }).code(200)
+    }
+
+    return h.response({
+        status: 'fail',
+        message: 'KAGAK NEMU KOCAG'
+    }).code(404)
+    
+}
+
+module.exports = { addBarang, getAllBarang, getBarangByID, updateBarang, deleteBarang }
