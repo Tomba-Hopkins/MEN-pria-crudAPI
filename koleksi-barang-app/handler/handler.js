@@ -55,12 +55,31 @@ const addBarang = (req, h) => {
 }
 
 
-const getAllBarang = () => ({
-    status: 'success',
-    data: {
-        kardus
+const getAllBarang = (req) => {
+                
+    const filtered = []
+    let kardusFilter = kardus
+
+    const { owner } = req.query
+
+    if (owner !== undefined){
+        kardusFilter = kardusFilter.filter((k) => k.owner.toLowerCase().includes(owner))
     }
-})
+
+    kardusFilter.forEach(({owner, name, stock}) => {
+        filtered.push({owner, name, stock})
+    })
+
+    return {
+        status: 'success',
+        data: {
+            barang: filtered
+        }
+    }
+
+
+    
+}
 
 
 const getBarangByID = (req, h) => {
