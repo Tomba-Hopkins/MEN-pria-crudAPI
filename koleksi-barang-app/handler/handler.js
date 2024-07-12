@@ -63,7 +63,7 @@ const getAllBarang = (req) => {
     const { owner } = req.query
 
     if (owner !== undefined){
-        kardusFilter = kardusFilter.filter((k) => k.owner.toLowerCase().includes(owner))
+        kardusFilter = kardusFilter.filter((k) => k.owner.toLowerCase().includes(owner.toLowerCase()))
     }
 
     kardusFilter.forEach(({owner, name, stock}) => {

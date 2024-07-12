@@ -1,5 +1,4 @@
 const Hapi = require('@hapi/hapi')
-const kardus = require('./resource/kardus')
 const routes = require('./routes/routes')
 
 
